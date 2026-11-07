@@ -92,19 +92,31 @@ function safeUrl(value) {
 }
 
 function applyContact(contact = defaultContact) {
-  const name = (contact.name || defaultContact.name).trim();
-  const email = (contact.email || defaultContact.email).trim();
-  document.querySelector('#profileNameAbout').textContent = name;
-  document.querySelector('#profileNameFooter').textContent = name;
+  const name = String(contact.name || defaultContact.name).trim();
+  const email = String(contact.email || defaultContact.email).trim();
+  const aboutName = document.querySelector('#profileNameAbout') || document.querySelector('[data-edit-key="about-lead"] span');
+  const footerName = document.querySelector('#profileNameFooter');
+  if (aboutName) {
+    aboutName.id = 'profileNameAbout';
+    aboutName.textContent = name;
+  }
+  if (footerName) footerName.textContent = name;
   document.title = `${name}｜个人作品集`;
-  document.querySelector('#contactEmailText').textContent = email;
-  document.querySelector('#contactEmailLink').href = `mailto:${email}`;
-  document.querySelector('#xhsLink').textContent = (contact.xhsLabel || defaultContact.xhsLabel).trim();
-  document.querySelector('#xhsLink').href = safeUrl(contact.xhs || '');
-  document.querySelector('#linkedinLink').textContent = (contact.linkedinLabel || defaultContact.linkedinLabel).trim();
-  document.querySelector('#linkedinLink').href = safeUrl(contact.linkedin || '');
-  document.querySelector('#instagramLink').textContent = (contact.instagramLabel || defaultContact.instagramLabel).trim();
-  document.querySelector('#instagramLink').href = safeUrl(contact.instagram || '');
+  const emailText = document.querySelector('#contactEmailText');
+  const emailLink = document.querySelector('#contactEmailLink');
+  if (emailText) emailText.textContent = email;
+  if (emailLink) emailLink.href = `mailto:${email}`;
+  const socialLinks = [
+    ['#xhsLink', contact.xhsLabel || defaultContact.xhsLabel, contact.xhs],
+    ['#linkedinLink', contact.linkedinLabel || defaultContact.linkedinLabel, contact.linkedin],
+    ['#instagramLink', contact.instagramLabel || defaultContact.instagramLabel, contact.instagram]
+  ];
+  socialLinks.forEach(([selector, label, url]) => {
+    const link = document.querySelector(selector);
+    if (!link) return;
+    link.textContent = String(label).trim();
+    link.href = safeUrl(url || '');
+  });
 }
 
 function applyData(data) {
