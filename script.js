@@ -36,9 +36,13 @@ document.querySelectorAll(`[data-edit-key="${OBSOLETE_CONTACT_NOTE_KEY}"]`).forE
 const editableElements = [...document.querySelectorAll('[data-edit-key]')];
 const defaults = Object.fromEntries(editableElements.map((element) => [element.dataset.editKey, element.innerHTML]));
 const defaultContact = {
+  name: '你的名字',
   email: 'hello@example.com',
+  xhsLabel: '小红书',
   xhs: '',
+  linkedinLabel: 'LinkedIn',
   linkedin: '',
+  instagramLabel: 'Instagram',
   instagram: ''
 };
 const editLaunch = document.querySelector('#editLaunch');
@@ -47,9 +51,13 @@ const editSave = document.querySelector('#editSave');
 const editCancel = document.querySelector('#editCancel');
 const editReset = document.querySelector('#editReset');
 const editToast = document.querySelector('#editToast');
+const editName = document.querySelector('#editName');
 const editEmail = document.querySelector('#editEmail');
+const editXhsLabel = document.querySelector('#editXhsLabel');
 const editXhs = document.querySelector('#editXhs');
+const editLinkedinLabel = document.querySelector('#editLinkedinLabel');
 const editLinkedin = document.querySelector('#editLinkedin');
+const editInstagramLabel = document.querySelector('#editInstagramLabel');
 const editInstagram = document.querySelector('#editInstagram');
 const imageElements = [...document.querySelectorAll('[data-image-key]')];
 const imageUploadInput = document.querySelector('#imageUploadInput');
@@ -84,11 +92,18 @@ function safeUrl(value) {
 }
 
 function applyContact(contact = defaultContact) {
+  const name = (contact.name || defaultContact.name).trim();
   const email = (contact.email || defaultContact.email).trim();
+  document.querySelector('#profileNameAbout').textContent = name;
+  document.querySelector('#profileNameFooter').textContent = name;
+  document.title = `${name}｜个人作品集`;
   document.querySelector('#contactEmailText').textContent = email;
   document.querySelector('#contactEmailLink').href = `mailto:${email}`;
+  document.querySelector('#xhsLink').textContent = (contact.xhsLabel || defaultContact.xhsLabel).trim();
   document.querySelector('#xhsLink').href = safeUrl(contact.xhs || '');
+  document.querySelector('#linkedinLink').textContent = (contact.linkedinLabel || defaultContact.linkedinLabel).trim();
   document.querySelector('#linkedinLink').href = safeUrl(contact.linkedin || '');
+  document.querySelector('#instagramLink').textContent = (contact.instagramLabel || defaultContact.instagramLabel).trim();
   document.querySelector('#instagramLink').href = safeUrl(contact.instagram || '');
 }
 
@@ -122,9 +137,13 @@ function collectImages() {
 }
 
 function fillContactFields(contact = defaultContact) {
+  editName.value = contact.name || defaultContact.name;
   editEmail.value = contact.email || '';
+  editXhsLabel.value = contact.xhsLabel || defaultContact.xhsLabel;
   editXhs.value = contact.xhs || '';
+  editLinkedinLabel.value = contact.linkedinLabel || defaultContact.linkedinLabel;
   editLinkedin.value = contact.linkedin || '';
+  editInstagramLabel.value = contact.instagramLabel || defaultContact.instagramLabel;
   editInstagram.value = contact.instagram || '';
 }
 
@@ -132,9 +151,13 @@ function collectData() {
   return {
     content: Object.fromEntries(editableElements.map((element) => [element.dataset.editKey, element.innerHTML.trim()])),
     contact: {
+      name: editName.value.trim() || defaultContact.name,
       email: editEmail.value.trim(),
+      xhsLabel: editXhsLabel.value.trim() || defaultContact.xhsLabel,
       xhs: editXhs.value.trim(),
+      linkedinLabel: editLinkedinLabel.value.trim() || defaultContact.linkedinLabel,
       linkedin: editLinkedin.value.trim(),
+      instagramLabel: editInstagramLabel.value.trim() || defaultContact.instagramLabel,
       instagram: editInstagram.value.trim()
     },
     images: collectImages()
