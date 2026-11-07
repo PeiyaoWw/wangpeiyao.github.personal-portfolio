@@ -31,6 +31,8 @@ updateClock();
 setInterval(updateClock, 30000);
 
 const EDIT_STORAGE_KEY = 'portfolio-editor-v1';
+const OBSOLETE_CONTACT_NOTE_KEY = 'contact-note';
+document.querySelectorAll(`[data-edit-key="${OBSOLETE_CONTACT_NOTE_KEY}"]`).forEach((element) => element.remove());
 const editableElements = [...document.querySelectorAll('[data-edit-key]')];
 const defaults = Object.fromEntries(editableElements.map((element) => [element.dataset.editKey, element.innerHTML]));
 const defaultContact = {
@@ -59,7 +61,12 @@ let activeImageKey = null;
 
 function readSavedData() {
   try {
-    return JSON.parse(localStorage.getItem(EDIT_STORAGE_KEY)) || { content: {}, contact: defaultContact };
+    const saved = JSON.parse(localStorage.getItem(EDIT_STORAGE_KEY)) || { content: {}, contact: defaultContact };
+    if (saved.content && Object.prototype.hasOwnProperty.call(saved.content, OBSOLETE_CONTACT_NOTE_KEY)) {
+      delete saved.content[OBSOLETE_CONTACT_NOTE_KEY];
+      localStorage.setItem(EDIT_STORAGE_KEY, JSON.stringify(saved));
+    }
+    return saved;
   } catch {
     return { content: {}, contact: defaultContact };
   }
