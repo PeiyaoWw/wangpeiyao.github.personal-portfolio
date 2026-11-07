@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Noto+Sans+SC:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=20261107-2" />
+  <link rel="stylesheet" href="./styles.css?v=20261107-3" />
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -74,6 +74,22 @@
         <img class="editable-image hero-edit-image" data-image-key="hero" alt="首页主视觉" />
         <button class="image-remove" data-remove-image="hero" type="button">移除</button>
         <span class="art-label">SELECTED<br />WORKS<br />2024—26</span>
+      </div>
+    </section>
+
+    <section class="home-film section-pad reveal" aria-labelledby="filmTitle">
+      <div class="film-head">
+        <p data-edit-key="film-kicker" data-edit-single>00 / SELECTED FILM</p>
+        <h2 id="filmTitle" data-edit-key="film-title" data-edit-single>NATAKU</h2>
+        <span data-edit-key="film-meta" data-edit-single>XR / AR PROJECT · 2024</span>
+      </div>
+      <div class="film-frame">
+        <video autoplay muted loop playsinline controls preload="metadata" aria-label="Nataku 项目视频">
+          <source src="./assets/nataku.mp4" type="video/mp4" />
+          <source src="./assets/nataku-web.mov" type="video/quicktime" />
+          你的浏览器暂不支持视频播放。
+        </video>
+        <div class="film-caption" data-edit-key="film-caption" data-edit-single>IMMERSIVE EXPERIENCE / MOTION STUDY</div>
       </div>
     </section>
 
@@ -175,6 +191,6 @@
     <span>HANGZHOU — <b id="clock">00:00</b></span>
   </footer>
 
-  <script src="./script.js?v=20261107-5"></script>
+  <script src="./script.js?v=20261107-6"></script>
 </body>
 </html>
