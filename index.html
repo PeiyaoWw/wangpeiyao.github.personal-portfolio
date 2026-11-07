@@ -21,9 +21,13 @@
         <span class="edit-dot" aria-hidden="true"></span>
       </div>
       <div class="contact-fields">
+        <label>姓名 / 品牌名<input id="editName" type="text" placeholder="你的名字" /></label>
         <label>联系邮箱<input id="editEmail" type="email" placeholder="hello@example.com" /></label>
+        <label>小红书显示名称<input id="editXhsLabel" type="text" placeholder="小红书" /></label>
         <label>小红书链接<input id="editXhs" type="url" placeholder="https://..." /></label>
+        <label>LinkedIn 显示名称<input id="editLinkedinLabel" type="text" placeholder="LinkedIn" /></label>
         <label>LinkedIn 链接<input id="editLinkedin" type="url" placeholder="https://..." /></label>
+        <label>Instagram 显示名称<input id="editInstagramLabel" type="text" placeholder="Instagram" /></label>
         <label>Instagram 链接<input id="editInstagram" type="url" placeholder="https://..." /></label>
       </div>
       <p class="image-edit-hint">图片：点击首页主视觉、头像或项目封面即可替换。</p>
@@ -140,7 +144,7 @@
           <div class="portrait-head"></div><div class="portrait-body"></div><span>把你的照片<br />放在这里 ↗</span>
         </div>
         <div class="about-copy reveal">
-          <p class="lead" data-edit-key="about-lead">你好，我是<span>你的名字</span>。我相信真正有效的设计，来自对问题的理解、对细节的坚持，以及把事情做成的能力。</p>
+          <p class="lead" data-edit-key="about-lead">你好，我是<span id="profileNameAbout">你的名字</span>。我相信真正有效的设计，来自对问题的理解、对细节的坚持，以及把事情做成的能力。</p>
           <p data-edit-key="about-body">过去几年，我与不同阶段的团队合作，从模糊的想法开始，一起定义方向、建立系统，最终把它变成真实可用的产品与品牌体验。</p>
           <dl>
             <div><dt>专注领域</dt><dd data-edit-key="about-focus" data-edit-single>品牌 / 产品 / 体验</dd></div>
@@ -166,11 +170,11 @@
   </main>
 
   <footer>
-    <a href="#top"><span data-edit-key="footer-name" data-edit-single>你的名字</span> © 2026</a>
+    <a href="#top"><span id="profileNameFooter">你的名字</span> © 2026</a>
     <div><a id="xhsLink" href="#">小红书</a><a id="linkedinLink" href="#">LinkedIn</a><a id="instagramLink" href="#">Instagram</a></div>
     <span>HANGZHOU — <b id="clock">00:00</b></span>
   </footer>
 
-  <script src="./script.js?v=20261107-2"></script>
+  <script src="./script.js?v=20261107-3"></script>
 </body>
 </html>
