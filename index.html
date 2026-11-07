@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Noto+Sans+SC:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=20261107-2" />
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -46,13 +46,13 @@
   <input class="visually-hidden" id="editImportInput" type="file" accept="application/json,.json" />
   <div class="edit-toast" id="editToast" role="status" aria-live="polite"></div>
   <header class="nav-wrap">
-    <a class="brand" href="#top" aria-label="返回首页">YN<span>©26</span></a>
+    <a class="brand" href="#top" aria-label="返回首页"><span class="brand-name" data-edit-key="header-brand" data-edit-single>YN</span><span class="brand-year">©26</span></a>
     <nav aria-label="主导航">
-      <a href="#work">作品</a>
-      <a href="#about">关于</a>
-      <a href="#contact">联系</a>
+      <a href="#work" data-edit-key="header-work" data-edit-single>作品</a>
+      <a href="#about" data-edit-key="header-about" data-edit-single>关于</a>
+      <a href="#contact" data-edit-key="header-contact" data-edit-single>联系</a>
     </nav>
-    <a class="availability" href="#contact"><i></i> 可合作</a>
+    <a class="availability" href="#contact"><i></i><span data-edit-key="header-availability" data-edit-single>可合作</span></a>
   </header>
 
   <main id="top">
@@ -175,6 +175,6 @@
     <span>HANGZHOU — <b id="clock">00:00</b></span>
   </footer>
 
-  <script src="./script.js?v=20261107-4"></script>
+  <script src="./script.js?v=20261107-5"></script>
 </body>
 </html>
