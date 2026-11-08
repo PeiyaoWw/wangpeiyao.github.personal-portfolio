@@ -3,194 +3,96 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="个人作品集——设计、策略与创意开发。" />
-  <meta name="theme-color" content="#f1eee6" />
-  <title>你的名字｜个人作品集</title>
+  <meta name="description" content="Peiyao Wang 商业空间视觉设计作品集——品牌、活动、空间与落地。" />
+  <meta name="theme-color" content="#071a2c" />
+  <meta property="og:title" content="Peiyao Wang｜商业空间视觉设计" />
+  <meta property="og:description" content="杭州江南语境下的品牌视觉、商业活动、美陈空间与制作管理作品。" />
+  <meta property="og:image" content="./portfolio-media/01-homepage-hangzhou.png" />
+  <title>Peiyao Wang｜商业空间视觉设计</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Noto+Sans+SC:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=20261107-3" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=Noto+Sans+SC:wght@400;500;600;700;900&amp;family=Noto+Serif+SC:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css?v=20261108-1" />
 </head>
 <body>
-  <div class="cursor" aria-hidden="true"></div>
-  <aside class="edit-dock" aria-label="页面编辑器">
-    <button class="edit-launch" id="editLaunch" type="button"><span>✎</span> 编辑页面</button>
-    <div class="edit-panel" id="editPanel" hidden>
-      <div class="edit-panel-head">
-        <div><strong>编辑模式</strong><small>点击虚线框中的文字直接修改</small></div>
-        <span class="edit-dot" aria-hidden="true"></span>
-      </div>
-      <div class="contact-fields">
-        <label>姓名 / 品牌名<input id="editName" type="text" placeholder="你的名字" /></label>
-        <label>联系邮箱<input id="editEmail" type="email" placeholder="hello@example.com" /></label>
-        <label>小红书显示名称<input id="editXhsLabel" type="text" placeholder="小红书" /></label>
-        <label>小红书链接<input id="editXhs" type="url" placeholder="https://..." /></label>
-        <label>LinkedIn 显示名称<input id="editLinkedinLabel" type="text" placeholder="LinkedIn" /></label>
-        <label>LinkedIn 链接<input id="editLinkedin" type="url" placeholder="https://..." /></label>
-        <label>Instagram 显示名称<input id="editInstagramLabel" type="text" placeholder="Instagram" /></label>
-        <label>Instagram 链接<input id="editInstagram" type="url" placeholder="https://..." /></label>
-      </div>
-      <p class="image-edit-hint">图片：点击首页主视觉、头像或项目封面即可替换。</p>
-      <div class="edit-actions">
-        <button class="edit-save" id="editSave" type="button">保存修改</button>
-        <button id="editCancel" type="button">取消</button>
-        <button class="edit-reset" id="editReset" type="button">恢复默认</button>
-      </div>
-      <div class="edit-transfer">
-        <button id="editExport" type="button">导出编辑备份</button>
-        <button id="editImport" type="button">导入备份</button>
-      </div>
-    </div>
-  </aside>
-  <input class="visually-hidden" id="imageUploadInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
-  <input class="visually-hidden" id="editImportInput" type="file" accept="application/json,.json" />
-  <div class="edit-toast" id="editToast" role="status" aria-live="polite"></div>
-  <header class="nav-wrap">
-    <a class="brand" href="#top" aria-label="返回首页"><span class="brand-name" data-edit-key="header-brand" data-edit-single>YN</span><span class="brand-year">©26</span></a>
-    <nav aria-label="主导航">
-      <a href="#work" data-edit-key="header-work" data-edit-single>作品</a>
-      <a href="#about" data-edit-key="header-about" data-edit-single>关于</a>
-      <a href="#contact" data-edit-key="header-contact" data-edit-single>联系</a>
-    </nav>
-    <a class="availability" href="#contact"><i></i><span data-edit-key="header-availability" data-edit-single>可合作</span></a>
+  <div class="page-progress" aria-hidden="true"><span></span></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="返回首页"><strong>PEIYAO WANG</strong><small>VISUAL DESIGN PORTFOLIO</small></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">菜单</button>
+    <nav id="siteNav" aria-label="主导航"><a href="#commercial">商业案例</a><a href="#projects">作品</a><a href="#film">影像</a><a href="#about">关于</a></nav>
   </header>
 
   <main id="top">
-    <section class="hero section-pad">
-      <div class="hero-kicker reveal" data-edit-key="hero-kicker" data-edit-single>独立设计师 &amp; 创意开发者 / 杭州</div>
-      <h1 class="hero-title" aria-label="把想法，做成有影响力的体验">
-        <span class="line reveal" data-edit-key="hero-line-1" data-edit-single>把想法，</span>
-        <span class="line reveal" data-edit-key="hero-line-2" data-edit-single><em>做成</em> 有影响力的</span>
-        <span class="line reveal" data-edit-key="hero-line-3" data-edit-single>数字体验<span class="dot">。</span></span>
-      </h1>
-      <div class="hero-foot reveal">
-        <p data-edit-key="hero-intro">我在设计、品牌与技术的交界处工作，<br />把复杂问题转化为清晰、好用、令人记住的体验。</p>
-        <a class="circle-link" href="#work" aria-label="查看作品">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6" /></svg>
-        </a>
+    <section class="hero" aria-labelledby="heroTitle">
+      <img class="hero-image" src="./portfolio-media/01-homepage-hangzhou.png" alt="杭州江南蓝调风格的商业空间视觉作品集首页" fetchpriority="high" />
+      <div class="hero-shade"></div><div class="tide-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hero-content">
+        <p class="eyebrow">HANGZHOU · JIANGNAN</p>
+        <h1 id="heroTitle">商业空间<br />视觉设计</h1>
+        <p class="hero-subtitle">品牌 × 活动 × 空间 × 落地</p>
+        <p class="hero-intro">从视觉策略到场内呈现，以当代杭州的水岸、潮汐与夜游体验为线索，建立可传播、可执行的商业视觉系统。</p>
+        <div class="hero-actions"><a class="button button-primary" href="#commercial">查看重点案例</a><a class="button button-ghost" href="#projects">浏览全部作品</a></div>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div>
-        <img class="editable-image hero-edit-image" data-image-key="hero" alt="首页主视觉" />
-        <button class="image-remove" data-remove-image="hero" type="button">移除</button>
-        <span class="art-label">SELECTED<br />WORKS<br />2024—26</span>
+      <div class="hero-meta"><span>BRAND</span><span>CAMPAIGN</span><span>SPACE</span><span>PRODUCTION</span></div>
+    </section>
+
+    <section class="intro section" aria-label="能力概览">
+      <p class="section-index">00 / PROFILE</p>
+      <div class="intro-copy reveal"><p class="serif-line">Between water, light and city.</p><h2>把设计从一张主视觉，<br />延展到完整的商业现场。</h2></div>
+      <div class="capabilities reveal">
+        <article><span>01</span><h3>品牌系统</h3><p>VI / CI、字体、色彩、图形与应用规范。</p></article>
+        <article><span>02</span><h3>活动视觉</h3><p>KV、线上传播、户外大屏与全场物料延展。</p></article>
+        <article><span>03</span><h3>空间美陈</h3><p>中庭、入口、导视、打卡点与场内氛围。</p></article>
+        <article><span>04</span><h3>制作落地</h3><p>材料、预算、排期、供应商协同与验收。</p></article>
       </div>
     </section>
 
-    <section class="home-film section-pad reveal" aria-labelledby="filmTitle">
-      <div class="film-head">
-        <p data-edit-key="film-kicker" data-edit-single>00 / SELECTED FILM</p>
-        <h2 id="filmTitle" data-edit-key="film-title" data-edit-single>NATAKU</h2>
-        <span data-edit-key="film-meta" data-edit-single>XR / AR PROJECT · 2024</span>
+    <section class="featured section" id="commercial">
+      <div class="section-title reveal">
+        <div><p class="section-index">01 / COMMERCIAL CASE</p><p class="serif-line">Hangzhou Night Tide Season</p></div>
+        <h2>江南潮汐<br />杭州夜游季</h2>
+        <p class="section-note">自主概念提案<br />商业活动视觉 / 空间美陈 / 制作管理</p>
       </div>
-      <div class="film-frame">
-        <video autoplay muted loop playsinline controls preload="metadata" aria-label="Nataku 项目视频">
-          <source src="./assets/nataku-hq.mp4?v=3" type="video/mp4" />
-          <source src="./assets/nataku-web.mov" type="video/quicktime" />
-          你的浏览器暂不支持视频播放。
-        </video>
-        <div class="film-caption" data-edit-key="film-caption" data-edit-single>IMMERSIVE EXPERIENCE / MOTION STUDY</div>
-      </div>
-    </section>
-
-    <div class="ticker" aria-hidden="true">
-      <div>品牌策略 ✦ 视觉设计 ✦ 产品体验 ✦ 创意开发 ✦ 品牌策略 ✦ 视觉设计 ✦ 产品体验 ✦ 创意开发 ✦</div>
-    </div>
-
-    <section class="work section-pad" id="work">
-      <div class="section-heading reveal">
-        <p>01 / 精选作品</p>
-        <h2 data-edit-key="work-heading">从问题出发，<br />让结果自己说话。</h2>
-      </div>
-
-      <article class="project project-featured reveal">
-        <div class="project-visual visual-one">
-          <img class="editable-image" data-image-key="project-1" alt="项目一封面" />
-          <button class="image-remove" data-remove-image="project-1" type="button">移除图片</button>
-          <div class="phone"><div class="phone-ui"><span>NEO</span><b>让日常<br />更有节奏</b><i></i></div></div>
-          <span class="project-no">01</span>
-        </div>
-        <div class="project-copy">
-          <div><span data-edit-key="project-1-type" data-edit-single>品牌升级 · 数字产品</span><span data-edit-key="project-1-year" data-edit-single>2026</span></div>
-          <h3 data-edit-key="project-1-title" data-edit-single>NEO 健康生活</h3>
-          <p data-edit-key="project-1-description">为新生活方式品牌建立从视觉识别到数字产品的完整体验。此处为示例项目，等待替换为你的真实案例。</p>
-          <a href="#contact">查看案例 <span>↗</span></a>
-        </div>
+      <article class="feature-stage reveal">
+        <button class="image-card tall" type="button" data-image="./portfolio-media/02-jiangnan-night-campaign.png" data-title="江南潮汐 · 杭州夜游季">
+          <img src="./portfolio-media/02-jiangnan-night-campaign.png" alt="江南潮汐杭州夜游季完整视觉案例" /><span class="image-card-label">视觉策略与场景应用 <b>查看高清长图 ↗</b></span>
+        </button>
+        <div class="feature-copy"><p class="lead">以钱塘潮线、桥弧、水面倒影和蓝调夜色，重构当代“江南”。</p><p>案例覆盖活动策略、KV、户外大屏、入口氛围、场内导视、社交媒体传播及中庭互动装置，让视觉概念贯穿消费者的完整夜游路径。</p><dl><div><dt>目标客群</dt><dd>18—35岁城市年轻人</dd></div><div><dt>核心触点</dt><dd>中庭 / 入口 / 电梯 / 外立面</dd></div><div><dt>视觉语言</dt><dd>潮汐 / 桥弧 / 光幕 / 水影</dd></div></dl></div>
       </article>
+      <article class="feature-stage reverse reveal">
+        <button class="image-card tall" type="button" data-image="./portfolio-media/03-production-management.png" data-title="江南潮汐 · 制作管理示意">
+          <img src="./portfolio-media/03-production-management.png" alt="江南潮汐制作管理与落地示意" loading="lazy" decoding="async" /><span class="image-card-label">制作与项目管理 <b>查看高清长图 ↗</b></span>
+        </button>
+        <div class="feature-copy"><p class="lead">让创意不止停在效果图，而是进入尺寸、材料、预算、进度与验收。</p><p>将银色曲面带、防火薄纱、可编程点光灯串、铝型材桥拱和可复用镜面地台拆解为可执行模块，并建立供应商协作及现场验收流程。</p><dl><div><dt>规划</dt><dd>场内触点与消费者动线</dd></div><div><dt>执行</dt><dd>结构 / 材料 / 打样 / 进场</dd></div><div><dt>管理</dt><dd>预算分级 / T-28排期 / 验收</dd></div></dl></div>
+      </article>
+    </section>
 
+    <section class="projects section" id="projects">
+      <div class="section-title compact reveal"><div><p class="section-index">02 / SELECTED WORKS</p><p class="serif-line">Four ways of seeing.</p></div><h2>精选作品</h2><p class="section-note">视觉系统 / 编辑设计<br />空间装置 / 动态影像</p></div>
       <div class="project-grid">
-        <article class="project reveal">
-          <div class="project-visual visual-two">
-            <img class="editable-image" data-image-key="project-2" alt="项目二封面" />
-            <button class="image-remove" data-remove-image="project-2" type="button">移除图片</button>
-            <div class="poster"><small>THE NEW<br />FAMILIAR</small><strong>二<br />三</strong><span>文化与空间</span></div>
-            <span class="project-no">02</span>
-          </div>
-          <div class="project-copy">
-            <div><span data-edit-key="project-2-type" data-edit-single>品牌识别 · 空间视觉</span><span data-edit-key="project-2-year" data-edit-single>2025</span></div>
-            <h3 data-edit-key="project-2-title" data-edit-single>二三文化空间</h3>
-            <p data-edit-key="project-2-description">将“熟悉中的陌生感”转译成富有张力的视觉系统。</p>
-          </div>
-        </article>
-        <article class="project project-offset reveal">
-          <div class="project-visual visual-three">
-            <img class="editable-image" data-image-key="project-3" alt="项目三封面" />
-            <button class="image-remove" data-remove-image="project-3" type="button">移除图片</button>
-            <div class="data-card"><small>FIELD NOTES</small><b>27.4</b><span>°C / HANGZHOU</span><div class="chart"></div></div>
-            <span class="project-no">03</span>
-          </div>
-          <div class="project-copy">
-            <div><span data-edit-key="project-3-type" data-edit-single>交互设计 · 创意开发</span><span data-edit-key="project-3-year" data-edit-single>2024</span></div>
-            <h3 data-edit-key="project-3-title" data-edit-single>城市感知档案</h3>
-            <p data-edit-key="project-3-description">用数据与互动讲述一座城市正在发生的微小变化。</p>
-          </div>
-        </article>
+        <article class="project-card reveal"><button type="button" data-image="./portfolio-media/04-language-virus.png" data-title="语言病毒：公共沟通主题展"><img src="./portfolio-media/04-language-virus.png" alt="语言病毒公共沟通主题展案例" loading="lazy" decoding="async" /></button><div class="project-meta"><span>01 / EXHIBITION</span><span>视觉系统 · 空间装置</span></div><h3>语言病毒：公共沟通主题展</h3><p>从手工字形、海报系统到悬挂装置，把“语言传播”转译为空间体验。</p><button class="text-link" type="button" data-image="./portfolio-media/04-language-virus.png" data-title="语言病毒：公共沟通主题展">查看高清案例 ↗</button></article>
+        <article class="project-card reveal"><button type="button" data-image="./portfolio-media/05-nancy-color.png" data-title="Nancy Color：编辑设计与印刷实验"><img src="./portfolio-media/05-nancy-color.png" alt="Nancy Color编辑设计与印刷实验" loading="lazy" decoding="async" /></button><div class="project-meta"><span>02 / EDITORIAL</span><span>色彩系统 · 印刷制作</span></div><h3>Nancy Color：编辑设计与印刷实验</h3><p>以情绪色卡组织内容，并通过纸张、包装与装订测试验证最终成品。</p><button class="text-link" type="button" data-image="./portfolio-media/05-nancy-color.png" data-title="Nancy Color：编辑设计与印刷实验">查看高清案例 ↗</button></article>
+        <article class="project-card reveal"><button type="button" data-image="./portfolio-media/06-f-shield.png" data-title="F-shield：公共安全服务视觉系统"><img src="./portfolio-media/06-f-shield.png" alt="F-shield公共安全服务视觉系统" loading="lazy" decoding="async" /></button><div class="project-meta"><span>03 / VISUAL SYSTEM</span><span>品牌识别 · 信息层级</span></div><h3>F-shield：公共安全服务视觉系统</h3><p>通过标志、图标、色彩与界面建立一致、清晰的公共服务视觉语言。</p><button class="text-link" type="button" data-image="./portfolio-media/06-f-shield.png" data-title="F-shield：公共安全服务视觉系统">查看高清案例 ↗</button></article>
+        <article class="project-card reveal"><button type="button" data-image="./portfolio-media/07-wheel-of-fate.png" data-title="Wheel of Fate：叙事影像与动态视觉实验"><img src="./portfolio-media/07-wheel-of-fate.png" alt="Wheel of Fate叙事影像与动态视觉实验" loading="lazy" decoding="async" /></button><div class="project-meta"><span>04 / MOTION</span><span>叙事影像 · 书籍作品</span></div><h3>Wheel of Fate：动态视觉实验</h3><p>以红、黑、白构建高对比叙事语言，并延展为动态影像与书籍作品。</p><button class="text-link" type="button" data-image="./portfolio-media/07-wheel-of-fate.png" data-title="Wheel of Fate：叙事影像与动态视觉实验">查看高清案例 ↗</button></article>
       </div>
     </section>
 
-    <section class="about section-pad" id="about">
-      <div class="section-heading light reveal">
-        <p>02 / 关于我</p>
-        <h2 data-edit-key="about-heading">好设计不止是<br />看起来不错。</h2>
-      </div>
-      <div class="about-grid">
-        <div class="portrait reveal" aria-label="抽象人物肖像占位图">
-          <img class="editable-image" data-image-key="portrait" alt="个人照片" />
-          <button class="image-remove" data-remove-image="portrait" type="button">移除图片</button>
-          <div class="portrait-head"></div><div class="portrait-body"></div><span>把你的照片<br />放在这里 ↗</span>
-        </div>
-        <div class="about-copy reveal">
-          <p class="lead" data-edit-key="about-lead">你好，我是<span id="profileNameAbout">你的名字</span>。我相信真正有效的设计，来自对问题的理解、对细节的坚持，以及把事情做成的能力。</p>
-          <p data-edit-key="about-body">过去几年，我与不同阶段的团队合作，从模糊的想法开始，一起定义方向、建立系统，最终把它变成真实可用的产品与品牌体验。</p>
-          <dl>
-            <div><dt>专注领域</dt><dd data-edit-key="about-focus" data-edit-single>品牌 / 产品 / 体验</dd></div>
-            <div><dt>常驻城市</dt><dd data-edit-key="about-location" data-edit-single>杭州 / 可远程</dd></div>
-            <div><dt>合作方式</dt><dd data-edit-key="about-collaboration" data-edit-single>项目制 / 顾问</dd></div>
-          </dl>
-        </div>
-      </div>
-      <div class="services reveal">
-        <div><span>01</span><h3 data-edit-key="service-1-title" data-edit-single>策略与定位</h3><p data-edit-key="service-1-description">梳理问题，找到品牌与产品最值得被看见的核心。</p></div>
-        <div><span>02</span><h3 data-edit-key="service-2-title" data-edit-single>设计与系统</h3><p data-edit-key="service-2-description">建立清晰、一致且能持续生长的视觉与体验系统。</p></div>
-        <div><span>03</span><h3 data-edit-key="service-3-title" data-edit-single>原型与落地</h3><p data-edit-key="service-3-description">从概念到可用原型，让想法快速进入真实世界。</p></div>
-      </div>
+    <section class="film section" id="film">
+      <div class="section-title compact reveal"><div><p class="section-index">03 / SELECTED FILM</p><p class="serif-line">Immersive experience.</p></div><h2>NATAKU</h2><p class="section-note">XR / AR PROJECT<br />MOTION STUDY · 2024</p></div>
+      <div class="film-frame reveal"><video autoplay muted loop playsinline controls preload="metadata" aria-label="Nataku项目视频"><source src="./assets/nataku-hq.mp4?v=3" type="video/mp4" /><source src="./assets/nataku-web.mov" type="video/quicktime" />你的浏览器暂不支持视频播放。</video></div>
     </section>
 
-    <section class="contact section-pad" id="contact">
-      <p class="reveal">03 / 开始合作</p>
-      <h2 class="reveal" data-edit-key="contact-heading">有个好想法？<br /><em>一起把它做出来。</em></h2>
-      <div class="contact-row reveal">
-        <a id="contactEmailLink" href="mailto:hello@example.com"><span id="contactEmailText">hello@example.com</span> <span>↗</span></a>
-      </div>
+    <section class="about section" id="about">
+      <p class="section-index">04 / ABOUT</p>
+      <div class="about-grid reveal"><div><p class="serif-line">Design for real places.</p><h2>视觉不只是被看见，<br />还要能够被执行。</h2></div><div class="about-copy"><p>我关注品牌视觉如何进入真实空间，并在活动、物料、动线和消费者体验中保持一致。</p><p>作品涵盖视觉识别、编辑设计、活动KV、展陈装置、动态影像及交互界面。当前重点发展商业空间视觉与场内美陈方向。</p><div class="about-tags"><span>VI / CI</span><span>Campaign KV</span><span>Spatial Visual</span><span>Print Production</span></div></div></div>
     </section>
+
+    <section class="contact section"><p class="section-index">05 / CONTACT</p><div class="contact-line reveal"><p class="serif-line">Available for opportunities.</p><h2>期待把想法<br />带到真实现场。</h2><p>联系方式以正式投递简历为准</p></div></section>
   </main>
 
-  <footer>
-    <a href="#top"><span id="profileNameFooter">你的名字</span> © 2026</a>
-    <div><a id="xhsLink" href="#">小红书</a><a id="linkedinLink" href="#">LinkedIn</a><a id="instagramLink" href="#">Instagram</a></div>
-    <span>HANGZHOU — <b id="clock">00:00</b></span>
-  </footer>
+  <footer><span>PEIYAO WANG © <b id="year">2026</b></span><a href="#top">BACK TO TOP ↑</a><span>HANGZHOU · <b id="clock">00:00</b></span></footer>
 
-  <script src="./script.js?v=20261107-8"></script>
+  <dialog class="lightbox" id="lightbox" aria-labelledby="lightboxTitle"><div class="lightbox-bar"><h2 id="lightboxTitle">案例高清长图</h2><div><a id="openOriginal" href="#" target="_blank" rel="noopener">打开原图 ↗</a><button id="lightboxClose" type="button" aria-label="关闭">关闭 ×</button></div></div><div class="lightbox-canvas"><img id="lightboxImage" alt="" /></div></dialog>
+  <script src="./script.js?v=20261108-1"></script>
 </body>
 </html>
