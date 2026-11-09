@@ -38,8 +38,6 @@ const defaults = Object.fromEntries(editableElements.map((element) => [element.d
 const defaultContact = {
   name: '王沛尧',
   email: 'yvonnewang998@gmail.com',
-  xhsLabel: '小红书',
-  xhs: '',
   linkedinLabel: 'LinkedIn',
   linkedin: '',
   instagramLabel: 'Instagram',
@@ -53,8 +51,6 @@ const editReset = document.querySelector('#editReset');
 const editToast = document.querySelector('#editToast');
 const editName = document.querySelector('#editName');
 const editEmail = document.querySelector('#editEmail');
-const editXhsLabel = document.querySelector('#editXhsLabel');
-const editXhs = document.querySelector('#editXhs');
 const editLinkedinLabel = document.querySelector('#editLinkedinLabel');
 const editLinkedin = document.querySelector('#editLinkedin');
 const editInstagramLabel = document.querySelector('#editInstagramLabel');
@@ -110,7 +106,6 @@ function applyContact(contact = defaultContact) {
   if (emailText) emailText.textContent = email;
   if (emailLink) emailLink.href = `mailto:${email}`;
   const socialLinks = [
-    ['#xhsLink', contact.xhsLabel || defaultContact.xhsLabel, contact.xhs],
     ['#linkedinLink', contact.linkedinLabel || defaultContact.linkedinLabel, contact.linkedin],
     ['#instagramLink', contact.instagramLabel || defaultContact.instagramLabel, contact.instagram]
   ];
@@ -154,8 +149,6 @@ function collectImages() {
 function fillContactFields(contact = defaultContact) {
   editName.value = contact.name || defaultContact.name;
   editEmail.value = contact.email || '';
-  editXhsLabel.value = contact.xhsLabel || defaultContact.xhsLabel;
-  editXhs.value = contact.xhs || '';
   editLinkedinLabel.value = contact.linkedinLabel || defaultContact.linkedinLabel;
   editLinkedin.value = contact.linkedin || '';
   editInstagramLabel.value = contact.instagramLabel || defaultContact.instagramLabel;
@@ -168,8 +161,6 @@ function collectData() {
     contact: {
       name: editName.value.trim() || defaultContact.name,
       email: editEmail.value.trim(),
-      xhsLabel: editXhsLabel.value.trim() || defaultContact.xhsLabel,
-      xhs: editXhs.value.trim(),
       linkedinLabel: editLinkedinLabel.value.trim() || defaultContact.linkedinLabel,
       linkedin: editLinkedin.value.trim(),
       instagramLabel: editInstagramLabel.value.trim() || defaultContact.instagramLabel,
