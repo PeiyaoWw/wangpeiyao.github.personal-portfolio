@@ -357,25 +357,59 @@ const caseLightboxImage = document.querySelector('#caseLightboxImage');
 const caseLightboxTitle = document.querySelector('#caseLightboxTitle');
 const caseLightboxOriginal = document.querySelector('#caseLightboxOriginal');
 const caseLightboxClose = document.querySelector('#caseLightboxClose');
+const caseLightboxCount = document.querySelector('#caseLightboxCount');
+const caseLightboxPrev = document.querySelector('#caseLightboxPrev');
+const caseLightboxNext = document.querySelector('#caseLightboxNext');
+let activeCaseGallery = [];
+let activeCaseIndex = 0;
+let activeCaseTitle = '';
 
-function openCaseLightbox(source, title) {
+function renderCaseSlide() {
   if (!caseLightbox || !caseLightboxImage || !caseLightboxTitle || !caseLightboxOriginal) return;
+  const source = activeCaseGallery[activeCaseIndex];
+  const title = activeCaseTitle;
   caseLightboxImage.src = source;
-  caseLightboxImage.alt = title + '高清长图';
+  caseLightboxImage.alt = `${title}高清案例第 ${activeCaseIndex + 1} 页`;
   caseLightboxTitle.textContent = title;
   caseLightboxOriginal.href = source;
+  if (caseLightboxCount) caseLightboxCount.textContent = `${activeCaseIndex + 1} / ${activeCaseGallery.length}`;
+  const hasMultipleSlides = activeCaseGallery.length > 1;
+  if (caseLightboxPrev) caseLightboxPrev.hidden = !hasMultipleSlides;
+  if (caseLightboxNext) caseLightboxNext.hidden = !hasMultipleSlides;
+}
+
+function openCaseLightbox(source, title, gallery = []) {
+  activeCaseGallery = gallery.length ? gallery : [source];
+  activeCaseIndex = 0;
+  activeCaseTitle = title;
+  renderCaseSlide();
   if (typeof caseLightbox.showModal === 'function') caseLightbox.showModal();
   else caseLightbox.setAttribute('open', '');
+}
+
+function moveCaseSlide(direction) {
+  if (activeCaseGallery.length < 2) return;
+  activeCaseIndex = (activeCaseIndex + direction + activeCaseGallery.length) % activeCaseGallery.length;
+  renderCaseSlide();
+  caseLightbox?.querySelector('.case-lightbox-canvas')?.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 document.querySelectorAll('[data-case-image]').forEach((trigger) => {
   trigger.addEventListener('click', () => {
     if (document.body.classList.contains('editing')) return;
-    openCaseLightbox(trigger.dataset.caseImage, trigger.dataset.caseTitle || '高清案例');
+    const gallery = (trigger.dataset.caseGallery || '').split('|').filter(Boolean);
+    openCaseLightbox(trigger.dataset.caseImage, trigger.dataset.caseTitle || '高清案例', gallery);
   });
 });
 
 caseLightboxClose?.addEventListener('click', () => caseLightbox?.close());
+caseLightboxPrev?.addEventListener('click', () => moveCaseSlide(-1));
+caseLightboxNext?.addEventListener('click', () => moveCaseSlide(1));
 caseLightbox?.addEventListener('click', (event) => {
   if (event.target === caseLightbox) caseLightbox.close();
+});
+document.addEventListener('keydown', (event) => {
+  if (!caseLightbox?.open) return;
+  if (event.key === 'ArrowLeft') moveCaseSlide(-1);
+  if (event.key === 'ArrowRight') moveCaseSlide(1);
 });
