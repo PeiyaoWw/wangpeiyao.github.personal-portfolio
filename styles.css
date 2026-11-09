@@ -52,3 +52,12 @@ body:has(.case-lightbox[open]){overflow:hidden}
   .case-lightbox-canvas{padding:10px}
   .case-lightbox-bar a{display:none}
 }
+
+/* Show every portfolio page in full instead of cropping it to the card. */
+.project-visual.case-visual,.project-grid .project-visual.case-visual,.case-visual-featured{min-height:0}
+.case-visual>button{position:relative;inset:auto;height:auto;display:block}
+.case-visual>button img{width:100%;height:auto;object-fit:contain;object-position:center;filter:none}
+.case-visual>button:hover img{transform:none;filter:brightness(.96)}
+.project-featured{align-items:start}
+.project-featured>.project-copy{position:sticky;top:24px}
+@media(max-width:760px){.project-featured>.project-copy{position:static}}
