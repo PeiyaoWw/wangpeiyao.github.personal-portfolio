@@ -36,8 +36,8 @@ document.querySelectorAll(`[data-edit-key="${OBSOLETE_CONTACT_NOTE_KEY}"]`).forE
 const editableElements = [...document.querySelectorAll('[data-edit-key]')];
 const defaults = Object.fromEntries(editableElements.map((element) => [element.dataset.editKey, element.innerHTML]));
 const defaultContact = {
-  name: '你的名字',
-  email: 'hello@example.com',
+  name: '王沛尧',
+  email: 'yvonnewang998@gmail.com',
   xhsLabel: '小红书',
   xhs: '',
   linkedinLabel: 'LinkedIn',
@@ -68,6 +68,9 @@ let editSnapshot = null;
 let activeImageKey = null;
 
 function readSavedData() {
+  if (document.documentElement.classList.contains('hr-view')) {
+    return { content: {}, contact: defaultContact, images: {} };
+  }
   try {
     const saved = JSON.parse(localStorage.getItem(EDIT_STORAGE_KEY)) || { content: {}, contact: defaultContact };
     if (saved.content && Object.prototype.hasOwnProperty.call(saved.content, OBSOLETE_CONTACT_NOTE_KEY)) {
