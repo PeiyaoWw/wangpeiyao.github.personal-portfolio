@@ -71,3 +71,39 @@ body:has(.case-lightbox[open]){overflow:hidden}
 .case-lightbox-next{right:max(24px,calc((100vw - 1120px)/2 + 12px))}
 .case-lightbox-nav:hover{background:var(--lime);color:var(--ink)}
 @media(max-width:760px){.case-lightbox-bar{padding:13px 12px}.case-lightbox-bar>div{gap:12px}.case-lightbox-nav{width:42px;height:42px;top:auto;bottom:18px;transform:none}.case-lightbox-prev{left:18px}.case-lightbox-next{right:18px}.case-lightbox-count{font-size:9px}}
+
+/* Risograph print practice */
+.riso-section{position:relative;overflow:hidden;padding-top:130px;padding-bottom:140px;background:#11162b;color:#f7f1e7}
+.riso-section:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.13;background-image:radial-gradient(circle,#ff72b6 1px,transparent 1.2px);background-size:10px 10px;mask-image:linear-gradient(to bottom,#000,transparent 32%)}
+.riso-heading{position:relative;z-index:1;display:grid;grid-template-columns:.7fr 2fr 1.15fr;gap:clamp(24px,4vw,68px);align-items:end;padding-bottom:58px;border-bottom:1px solid rgba(247,241,231,.28)}
+.riso-heading>p,.riso-process-copy>p:first-child{align-self:start;margin:10px 0 0;font-size:10px;letter-spacing:.15em;color:#4ef0c5}
+.riso-heading h2{margin:0;font-size:clamp(42px,6.4vw,92px);font-weight:600;line-height:.9;letter-spacing:-.06em}
+.riso-heading h2 em{color:#ff72b6;font-family:Georgia,serif;font-size:.52em;font-weight:400;letter-spacing:-.035em}
+.riso-intro{max-width:460px}
+.riso-intro p{margin:0 0 26px;font-size:14px;line-height:1.75;color:rgba(247,241,231,.72)}
+.riso-intro span{display:block;padding-top:18px;border-top:1px solid rgba(247,241,231,.25);font-size:12px;line-height:1.5;letter-spacing:.04em}
+.riso-intro strong{color:#ff72b6;font-weight:600}
+.riso-section figure{margin:0}.riso-section img{display:block;width:100%;height:auto;background:#e8e3d9}
+.riso-section figcaption{display:flex;gap:12px;justify-content:space-between;padding-top:10px;font-size:9px;letter-spacing:.12em;color:rgba(247,241,231,.58)}
+.riso-section figcaption span{color:#4ef0c5}
+.riso-hero{display:grid;grid-template-columns:minmax(230px,.68fr) 1.65fr;gap:clamp(26px,6vw,92px);align-items:end;padding:92px 0 120px}
+.riso-cover{max-width:490px}.riso-cover img{box-shadow:18px 20px 0 #ff72b6}
+.riso-feature{padding-bottom:5%}.riso-feature img{box-shadow:-18px 18px 0 #4ef0c5}
+.riso-process{display:grid;grid-template-columns:1.05fr .72fr .72fr;gap:clamp(20px,3vw,46px);padding:72px 0;border-top:1px solid rgba(247,241,231,.28);border-bottom:1px solid rgba(247,241,231,.28)}
+.riso-process-copy{padding-right:clamp(10px,4vw,70px)}
+.riso-process-copy h3{margin:24px 0 32px;font-size:clamp(30px,4vw,58px);line-height:1.05;letter-spacing:-.045em;font-weight:500}
+.riso-process-note{max-width:430px;font-size:13px;line-height:1.75;color:rgba(247,241,231,.68)}
+.riso-process ul{list-style:none;margin:45px 0 0;padding:0;border-top:1px solid rgba(247,241,231,.22)}
+.riso-process li{padding:11px 0;border-bottom:1px solid rgba(247,241,231,.22);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.riso-process figure{align-self:end}.riso-process figure:first-of-type img{filter:grayscale(1)}
+.riso-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,4vw,60px);padding-top:90px}
+.riso-gallery figure:last-child{grid-column:1/-1;width:72%;justify-self:end}
+@media(max-width:760px){
+  .riso-section{padding-top:90px;padding-bottom:90px}
+  .riso-heading{grid-template-columns:1fr;gap:24px;padding-bottom:42px}
+  .riso-heading>p{margin:0 0 12px}.riso-heading h2{font-size:13vw;line-height:.94}.riso-heading h2 em{font-size:.47em}
+  .riso-intro{margin-top:10px}.riso-intro p{font-size:13px}
+  .riso-hero{grid-template-columns:1fr;padding:65px 0 80px;gap:54px}.riso-cover{width:72%}.riso-cover img{box-shadow:11px 13px 0 #ff72b6}.riso-feature{padding:0}.riso-feature img{box-shadow:-10px 11px 0 #4ef0c5}
+  .riso-process{grid-template-columns:1fr 1fr;padding:58px 0;gap:24px 14px}.riso-process-copy{grid-column:1/-1;padding:0 0 25px}.riso-process-copy h3{font-size:36px}.riso-process ul{margin-top:32px}
+  .riso-gallery{grid-template-columns:1fr;padding-top:64px;gap:46px}.riso-gallery figure:last-child{grid-column:auto;width:100%}
+}
