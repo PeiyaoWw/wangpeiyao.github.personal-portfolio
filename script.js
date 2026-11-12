@@ -379,11 +379,6 @@ function warmCaseGallery() {
     .map((offset) => activeCaseGallery[(activeCaseIndex + offset + activeCaseGallery.length) % activeCaseGallery.length])
     .filter(Boolean);
   nearby.forEach((source) => preloadCaseImage(source).catch(() => {}));
-  const warmRemaining = () => {
-    activeCaseGallery.forEach((source) => preloadCaseImage(source).catch(() => {}));
-  };
-  if ('requestIdleCallback' in window) window.requestIdleCallback(warmRemaining, { timeout: 900 });
-  else window.setTimeout(warmRemaining, 250);
 }
 
 function renderCaseSlide() {
