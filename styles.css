@@ -66,8 +66,16 @@ body:has(.case-lightbox[open]){overflow:hidden}
 /* Multi-page case study viewer */
 .case-lightbox-count{font-size:10px;color:rgba(255,255,255,.68);letter-spacing:.08em;min-width:38px;text-align:center}
 .case-lightbox-canvas{position:relative;overflow:auto}
+.case-lightbox-canvas:before{content:"";position:absolute;left:50%;top:90px;width:30px;height:30px;margin-left:-15px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--lime);border-radius:50%;opacity:0;pointer-events:none;animation:case-spin .7s linear infinite;transition:opacity .15s}
+.case-lightbox.is-loading .case-lightbox-canvas:before{opacity:1}
+.case-lightbox.is-loading .case-lightbox-canvas img{opacity:.45}
+.case-lightbox-canvas img{transition:opacity .18s ease}
+@keyframes case-spin{to{transform:rotate(360deg)}}
 .case-lightbox-nav{position:fixed;top:50%;z-index:4;width:48px;height:48px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(18,18,18,.76);color:var(--lime);font:500 20px/1 inherit;cursor:pointer;backdrop-filter:blur(8px);transform:translateY(-50%)}
 .case-lightbox-prev{left:max(24px,calc((100vw - 1120px)/2 + 12px))}
 .case-lightbox-next{right:max(24px,calc((100vw - 1120px)/2 + 12px))}
 .case-lightbox-nav:hover{background:var(--lime);color:var(--ink)}
 @media(max-width:760px){.case-lightbox-bar{padding:13px 12px}.case-lightbox-bar>div{gap:12px}.case-lightbox-nav{width:42px;height:42px;top:auto;bottom:18px;transform:none}.case-lightbox-prev{left:18px}.case-lightbox-next{right:18px}.case-lightbox-count{font-size:9px}}
+
+/* Temporarily keep Daily Harvest out of the public portfolio without deleting its assets. */
+.project:has([data-case-gallery*="daily-harvest-full"]){display:none}

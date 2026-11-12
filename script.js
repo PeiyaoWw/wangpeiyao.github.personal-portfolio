@@ -357,12 +357,52 @@ const caseLightboxNext = document.querySelector('#caseLightboxNext');
 let activeCaseGallery = [];
 let activeCaseIndex = 0;
 let activeCaseTitle = '';
+let caseRenderToken = 0;
+const caseImageCache = new Map();
+
+function preloadCaseImage(source) {
+  if (!source) return Promise.resolve();
+  if (caseImageCache.has(source)) return caseImageCache.get(source);
+  const request = new Promise((resolve, reject) => {
+    const image = new Image();
+    image.decoding = 'async';
+    image.onload = resolve;
+    image.onerror = reject;
+    image.src = source;
+  });
+  caseImageCache.set(source, request);
+  return request;
+}
+
+function warmCaseGallery() {
+  const nearby = [1, -1, 2, -2]
+    .map((offset) => activeCaseGallery[(activeCaseIndex + offset + activeCaseGallery.length) % activeCaseGallery.length])
+    .filter(Boolean);
+  nearby.forEach((source) => preloadCaseImage(source).catch(() => {}));
+  const warmRemaining = () => {
+    activeCaseGallery.forEach((source) => preloadCaseImage(source).catch(() => {}));
+  };
+  if ('requestIdleCallback' in window) window.requestIdleCallback(warmRemaining, { timeout: 900 });
+  else window.setTimeout(warmRemaining, 250);
+}
 
 function renderCaseSlide() {
   if (!caseLightbox || !caseLightboxImage || !caseLightboxTitle || !caseLightboxOriginal) return;
   const source = activeCaseGallery[activeCaseIndex];
   const title = activeCaseTitle;
-  caseLightboxImage.src = source;
+  const token = ++caseRenderToken;
+  caseLightbox.classList.add('is-loading');
+  preloadCaseImage(source)
+    .then(() => {
+      if (token !== caseRenderToken) return;
+      caseLightboxImage.src = source;
+      caseLightbox.classList.remove('is-loading');
+    })
+    .catch(() => {
+      if (token !== caseRenderToken) return;
+      caseLightboxImage.src = source;
+      caseLightbox.classList.remove('is-loading');
+    });
   caseLightboxImage.alt = `${title}高清案例第 ${activeCaseIndex + 1} 页`;
   caseLightboxTitle.textContent = title;
   caseLightboxOriginal.href = source;
@@ -377,6 +417,7 @@ function openCaseLightbox(source, title, gallery = []) {
   activeCaseIndex = 0;
   activeCaseTitle = title;
   renderCaseSlide();
+  warmCaseGallery();
   if (typeof caseLightbox.showModal === 'function') caseLightbox.showModal();
   else caseLightbox.setAttribute('open', '');
 }
@@ -385,6 +426,7 @@ function moveCaseSlide(direction) {
   if (activeCaseGallery.length < 2) return;
   activeCaseIndex = (activeCaseIndex + direction + activeCaseGallery.length) % activeCaseGallery.length;
   renderCaseSlide();
+  warmCaseGallery();
   caseLightbox?.querySelector('.case-lightbox-canvas')?.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
