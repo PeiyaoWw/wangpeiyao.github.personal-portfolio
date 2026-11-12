@@ -357,83 +357,12 @@ const caseLightboxNext = document.querySelector('#caseLightboxNext');
 let activeCaseGallery = [];
 let activeCaseIndex = 0;
 let activeCaseTitle = '';
-let caseRenderToken = 0;
-const caseImageCache = new Map();
-
-function preloadCaseImage(source) {
-  if (!source) return Promise.resolve();
-  if (caseImageCache.has(source)) return caseImageCache.get(source);
-  const request = new Promise((resolve, reject) => {
-    const image = new Image();
-    image.decoding = 'async';
-    image.onload = resolve;
-    image.onerror = reject;
-    image.src = source;
-  });
-  caseImageCache.set(source, request);
-  return request;
-}
-
-function upgradeCaseCoverImages() {
-  const covers = [...document.querySelectorAll('img[data-hq-src]')];
-  if (!covers.length) return;
-
-  const upgrade = (image) => {
-    const source = image.dataset.hqSrc;
-    if (!source) return;
-    const loadHighQuality = () => {
-      preloadCaseImage(source)
-        .then(() => {
-          image.src = source;
-          image.removeAttribute('data-hq-src');
-        })
-        .catch(() => {});
-    };
-    if ('requestIdleCallback' in window) window.requestIdleCallback(loadHighQuality, { timeout: 700 });
-    else window.setTimeout(loadHighQuality, 160);
-  };
-
-  if (!('IntersectionObserver' in window)) {
-    covers.forEach(upgrade);
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      observer.unobserve(entry.target);
-      upgrade(entry.target);
-    });
-  }, { rootMargin: '160px 0px' });
-  covers.forEach((image) => observer.observe(image));
-}
-
-upgradeCaseCoverImages();
-
-function warmCaseGallery() {
-  const nearby = [1, -1]
-    .map((offset) => activeCaseGallery[(activeCaseIndex + offset + activeCaseGallery.length) % activeCaseGallery.length])
-    .filter(Boolean);
-  nearby.forEach((source) => preloadCaseImage(source).catch(() => {}));
-}
 
 function renderCaseSlide() {
   if (!caseLightbox || !caseLightboxImage || !caseLightboxTitle || !caseLightboxOriginal) return;
   const source = activeCaseGallery[activeCaseIndex];
   const title = activeCaseTitle;
-  const token = ++caseRenderToken;
-  caseLightbox.classList.add('is-loading');
-  preloadCaseImage(source)
-    .then(() => {
-      if (token !== caseRenderToken) return;
-      caseLightboxImage.src = source;
-      caseLightbox.classList.remove('is-loading');
-    })
-    .catch(() => {
-      if (token !== caseRenderToken) return;
-      caseLightboxImage.src = source;
-      caseLightbox.classList.remove('is-loading');
-    });
+  caseLightboxImage.src = source;
   caseLightboxImage.alt = `${title}高清案例第 ${activeCaseIndex + 1} 页`;
   caseLightboxTitle.textContent = title;
   caseLightboxOriginal.href = source;
@@ -448,7 +377,6 @@ function openCaseLightbox(source, title, gallery = []) {
   activeCaseIndex = 0;
   activeCaseTitle = title;
   renderCaseSlide();
-  warmCaseGallery();
   if (typeof caseLightbox.showModal === 'function') caseLightbox.showModal();
   else caseLightbox.setAttribute('open', '');
 }
@@ -457,7 +385,6 @@ function moveCaseSlide(direction) {
   if (activeCaseGallery.length < 2) return;
   activeCaseIndex = (activeCaseIndex + direction + activeCaseGallery.length) % activeCaseGallery.length;
   renderCaseSlide();
-  warmCaseGallery();
   caseLightbox?.querySelector('.case-lightbox-canvas')?.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
