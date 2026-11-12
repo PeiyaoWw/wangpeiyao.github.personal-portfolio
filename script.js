@@ -374,6 +374,42 @@ function preloadCaseImage(source) {
   return request;
 }
 
+function upgradeCaseCoverImages() {
+  const covers = [...document.querySelectorAll('img[data-hq-src]')];
+  if (!covers.length) return;
+
+  const upgrade = (image) => {
+    const source = image.dataset.hqSrc;
+    if (!source) return;
+    const loadHighQuality = () => {
+      preloadCaseImage(source)
+        .then(() => {
+          image.src = source;
+          image.removeAttribute('data-hq-src');
+        })
+        .catch(() => {});
+    };
+    if ('requestIdleCallback' in window) window.requestIdleCallback(loadHighQuality, { timeout: 700 });
+    else window.setTimeout(loadHighQuality, 160);
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    covers.forEach(upgrade);
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+      upgrade(entry.target);
+    });
+  }, { rootMargin: '160px 0px' });
+  covers.forEach((image) => observer.observe(image));
+}
+
+upgradeCaseCoverImages();
+
 function warmCaseGallery() {
   const nearby = [1, -1]
     .map((offset) => activeCaseGallery[(activeCaseIndex + offset + activeCaseGallery.length) % activeCaseGallery.length])
