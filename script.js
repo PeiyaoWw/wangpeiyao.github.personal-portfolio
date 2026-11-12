@@ -375,7 +375,7 @@ function preloadCaseImage(source) {
 }
 
 function warmCaseGallery() {
-  const nearby = [1, -1, 2, -2]
+  const nearby = [1, -1]
     .map((offset) => activeCaseGallery[(activeCaseIndex + offset + activeCaseGallery.length) % activeCaseGallery.length])
     .filter(Boolean);
   nearby.forEach((source) => preloadCaseImage(source).catch(() => {}));
