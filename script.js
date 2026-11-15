@@ -407,3 +407,19 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft') moveCaseSlide(-1);
   if (event.key === 'ArrowRight') moveCaseSlide(1);
 });
+
+// Load the larger Risograph production archive only when a visitor opens it.
+document.querySelectorAll('[data-lazy-gallery]').forEach((gallery) => {
+  gallery.addEventListener('toggle', () => {
+    const toggleLabel = gallery.querySelector('summary small b');
+    if (!gallery.open) {
+      if (toggleLabel) toggleLabel.textContent = '展开 +';
+      return;
+    }
+    gallery.querySelectorAll('img[data-src]').forEach((image) => {
+      image.src = image.dataset.src;
+      image.removeAttribute('data-src');
+    });
+    if (toggleLabel) toggleLabel.textContent = '收起 −';
+  });
+});
